@@ -37,3 +37,4 @@
 *.vcxproj.*
 *.vcxproj
 x64
+packages/
