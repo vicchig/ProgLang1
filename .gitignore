@@ -36,5 +36,5 @@
 *.sln
 *.vcxproj.*
 *.vcxproj
-x64
-packages/
+/build
+.vscode

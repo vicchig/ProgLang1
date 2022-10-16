@@ -3,7 +3,8 @@
 #include <stdio.h>
 #include <fstream>
 #include <vector>
-
+#include "ProgLang1Config.h"
+#include "../inc/Lexer.h"
 
 using std::cout;
 using std::endl;
@@ -14,6 +15,7 @@ using std::vector;
 
 int main(int argc, char* argv[])
 {
+    Lexer l = Lexer();
     //make sure file name arg is present
     if (argc < 2) {
         cout << "Missing file argument.\nUse ProgLang1.exe <FileName.pl1>";
