@@ -38,3 +38,4 @@
 *.vcxproj
 /build
 .vscode
+/docs
