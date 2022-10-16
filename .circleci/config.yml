@@ -2,14 +2,14 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs:
+  win: circleci/windows@4.1.1
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   run-tests:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
-    docker:
-      - image: cimg/base:stable
+    executor: win/default
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -18,14 +18,20 @@ jobs:
           name: "Create build dir"
           command: "mkdir ./build"
       - run:
+          name: "Download CMake"
+          command: "choco install cmake -y"
+      - run:
+          name: "Update PATH to include CMake"
+          command: "setx path '%PATH%;C:/Program Files/CMake/bin'"
+      - run:
           name: "Prepare CMake cache"
-          command: "cd ./build && cmake --fresh ../"
+          command: "cd ./build;cmake ../"
       - run:
           name: "Build"
-          command: "cmake --build ./"
+          command: "cd ./build;cmake --build ./"
       - run:
            name: "Run Tests"
-           command: "ctest"
+           command: "cd ./build;ctest"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
