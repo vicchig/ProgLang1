@@ -50,3 +50,7 @@ target_link_libraries(
 
 include(GoogleTest)
 gtest_discover_tests(LexerTest)
+
+
+# run cmake from build dir and pass path to CMakeLists.txt file (can add --fresh flag)
+# run cmake --build ./ from build dir
