@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <fstream>
 #include <vector>
-#include "ProgLang1Config.h"
+#include "../inc/ProgLang1Config.h"
 #include "../inc/Lexer.h"
 
 using std::cout;
