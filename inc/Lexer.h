@@ -15,12 +15,13 @@ using std::vector;
 class Lexer
 {
 	public:
-		Lexer(string codeFileName):currLine{1}, currCol{1}, filePath{codeFileName}{
+		Lexer(string codeFileName = ""):currLine{1}, currCol{1}, filePath{codeFileName}{
 			codeFileHandle.open(filePath);
 		};
 		~Lexer();
 
 		vector<Token> tokenizeFile();
+		void setFilePath(string newPath);
 
 	private:
 		const int TOKENIZE_LINE_LIMIT = 10;

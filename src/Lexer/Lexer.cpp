@@ -36,9 +36,10 @@ vector<Token> Lexer::tokenizeLine(string line){
     currLine++;
 
     return tkns;
-    //tokenize the line
-    //update the currLine
-    //col updates happen depending on length of token tokenized or where error occured so probably the state machine handles that
+}
+
+void Lexer::setFilePath(string newPath){
+    filePath = newPath;
 }
 
 Lexer::~Lexer(){

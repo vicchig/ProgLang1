@@ -1,4 +1,4 @@
-#include "../inc/Token.h"
+#include "../../inc/Token.h"
 
 using std::to_string;
 

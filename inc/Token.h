@@ -29,6 +29,7 @@ class Token{
         };
 
         string toString(bool indent = false);
+        friend bool operator==(Token const& o1, Token const& o2) = default;
 
         string text;
         TokenType type;
