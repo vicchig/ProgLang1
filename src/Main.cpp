@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include "../inc/ProgLang1Config.h"
-#include "../inc/Lexer.h"
-#include "../inc/Token.h"
+#include "./inc/ProgLang1Config.h"
+#include "./inc/Lexer.h"
+#include "./inc/Token.h"
 
 using std::cout;
 using std::endl;

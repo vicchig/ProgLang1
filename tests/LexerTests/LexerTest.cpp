@@ -1,5 +1,5 @@
-#include "../inc/Lexer.h"
-#include "../inc/Token.h"
+#include "../../src/inc/Lexer.h"
+#include "../../src/inc/Token.h"
 #include <vector>
 #include <tuple>
 #include <gtest/gtest.h>
