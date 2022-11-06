@@ -9,13 +9,11 @@ enable_testing() # let's cmake know project will include tests
 
 project(PLCompiler VERSION 1.0)
 
+# directories with CMake files that should be included in build
 add_subdirectory(src)
 add_subdirectory(tests)
 
-
-# run cmake from build dir and pass path to CMakeLists.txt file (can add --fresh flag)
-# run cmake --build ./ from build dir
-
+# Get googletest
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -25,3 +23,8 @@ FetchContent_Declare(
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
+
+
+# run cmake from build dir and pass path to CMakeLists.txt file (can add --fresh flag)
+# run cmake --build ./ from build dir
+# ctest -j10 -C Debug -T test --output-on-failure from build dir to test
