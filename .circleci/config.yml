@@ -30,8 +30,11 @@ jobs:
           name: "Build"
           command: "cd ./build;cmake --build ./"
       - run:
+          name: "Copy Test Files to Build Directory"
+          command: "cp ./tests/TestPrograms/* ./build/tests"
+      - run:
            name: "Run Tests"
-           command: "cd ./build;ctest"
+           command: "cd ./build;ctest -j10 -C Debug -T test --output-on-failure"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

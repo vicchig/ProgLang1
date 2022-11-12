@@ -1,21 +1,20 @@
 #include <iostream>
 #include <string>
-#include <stdio.h>
-#include <fstream>
 #include <vector>
-#include "ProgLang1Config.h"
-#include "../inc/Lexer.h"
+#include "./inc/ProgLang1Config.h"
+#include "./inc/Lexer.h"
+#include "./inc/Token.h"
 
 using std::cout;
 using std::endl;
 using std::ifstream;
 using std::string;
 using std::vector;
+using std::to_string;
 
 
 int main(int argc, char* argv[])
 {
-    Lexer l = Lexer();
     //make sure file name arg is present
     if (argc < 2) {
         cout << "Missing file argument.\nUse ProgLang1.exe <FileName.pl1>";
@@ -23,12 +22,7 @@ int main(int argc, char* argv[])
     }
 
     //save filename before manipulation
-    char* fileName = (char*)malloc(sizeof(char) * (strlen(argv[1]) + 1));
-    if (fileName == NULL) {
-        cout << "Malloc fail." << endl;
-        return 1;
-    }
-    strcpy_s(fileName, sizeof(char) * (strlen(argv[1]) + 1), argv[1]);
+    string codeFileName = argv[1];
 
     //check file extension
     char* nextToken = NULL;
@@ -44,8 +38,17 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    // SEND FILE TO LEXER
+    Lexer lex = Lexer(codeFileName);
+    vector<Token> tkns = lex.tokenizeFile();
+    cout << tkns.size();
+    for(int i = 0; i < tkns.size(); i++){
+        cout << "TOKEN: " + to_string(i) << endl;
+        cout << tkns.at(i).toString(true) << endl;
+    }
+
     //get all lines in the code
-    ifstream codeFile;
+    /*ifstream codeFile;
     codeFile.open(fileName);
 
     string line;
@@ -54,10 +57,12 @@ int main(int argc, char* argv[])
         lines.push_back(line);
     }
 
+    //TODO: TESTING CODE REMOVE LATER
+    for(int i = 0; i < lines.size(); i++){
+        cout << lines.at(i) << endl;
+    }*/
 
-    //cleanup
-    free(fileName);
-    codeFile.close();
+    // 
 
     return 0;
 }
