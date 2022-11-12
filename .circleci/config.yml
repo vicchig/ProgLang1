@@ -31,7 +31,7 @@ jobs:
           command: "cd ./build;cmake --build ./"
       - run:
           name: "Copy Test Files to Build Directory"
-          command: "cp ../tests/TestPrograms/* ./tests"
+          command: "cp ./tests/TestPrograms/* ./build/tests"
       - run:
            name: "Run Tests"
            command: "cd ./build;ctest -j10 -C Debug -T test --output-on-failure"
