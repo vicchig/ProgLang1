@@ -16,7 +16,9 @@ class Lexer
 {
 	public:
 		Lexer(string codeFileName = ""):currLine{1}, currCol{1}, filePath{codeFileName}{
-			codeFileHandle.open(filePath);
+			if(codeFileName.length() > 0){
+				codeFileHandle.open(filePath);
+			}
 		};
 		~Lexer();
 

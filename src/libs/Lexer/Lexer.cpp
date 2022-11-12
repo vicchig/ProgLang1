@@ -1,6 +1,10 @@
 #include "../../inc/Lexer.h"
 
 vector<Token> Lexer::tokenizeFile(){
+    if(!codeFileHandle.is_open()){
+        codeFileHandle.open(filePath);
+    }
+
     vector<Token> tokens{};
     vector<Token> nextTokens = tokenizeLines(TOKENIZE_LINE_LIMIT);
     tokens.insert(tokens.end(), nextTokens.begin(), nextTokens.end());
@@ -16,7 +20,7 @@ vector<Token> Lexer::tokenizeLines(int linesToTokenize){
     vector<string> lines{};
     string line;
     int linesRead = 0;
-     while(getline(codeFileHandle, line) && linesRead < linesToTokenize){
+    while(getline(codeFileHandle, line) && linesRead < linesToTokenize){
         lines.push_back(line);
     }
 
@@ -39,6 +43,9 @@ vector<Token> Lexer::tokenizeLine(string line){
 }
 
 void Lexer::setFilePath(string newPath){
+    if(codeFileHandle.is_open()){
+        codeFileHandle.close();
+    }
     filePath = newPath;
 }
 
