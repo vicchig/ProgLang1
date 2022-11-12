@@ -53,7 +53,7 @@ vector<Token> Tokenizer::tokenizeStr(string str, int lineNum){
 
 Token Tokenizer::constructTkn(string text, int lineNum, int columnStart){
     TokenType t = stateToTkn.contains(state) ? stateToTkn.at(state) : UNKNOWN_TKN;
-    Token tkn = Token(text, t, lineNum, columnStart);
+    Token tkn = Token(text, t, lineNum, columnStart + 1); // columnStart is a string offset so starts at 0
 
     return tkn;
 }
